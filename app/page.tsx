@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Prisma } from "@/generated/prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -27,13 +28,28 @@ export default function App() {
 
     return (
         <div className="w-full h-full">
-            <div className="flex flex-col">
-                {data.map((item) => (
-                    <div key={item.id}>
-                        <a href={`/${item.topic_rs.slug}/${item.slug}`}>
-                            {item.slug}
-                        </a>
+            <div className="flex flex-row gap-2 py-5">
+                <Link href="/spor">
+                    <div key="11111" className="border p-3 w-25">
+                        <div>Spor</div>
                     </div>
+                </Link>
+                <Link href="/teknoloji">
+                    <div key="111121" className="border p-3 w-25">
+                        <div>Teknoloji</div>
+                    </div>
+                </Link>
+            </div>
+            <div className="grid grid-cols-5 gap-3">
+                {data.map((item) => (
+                    <Link
+                        href={`/${item.topic_rs.slug}/${item.slug}`}
+                        key={item.id}
+                        className="border p-3"
+                    >
+                        <div>{item.title}</div>
+                        <div>{item.content}</div>
+                    </Link>
                 ))}
             </div>
         </div>
