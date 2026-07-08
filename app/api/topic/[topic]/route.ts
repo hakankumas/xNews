@@ -6,7 +6,7 @@ export async function GET(
     { params }: { params: Promise<{ topic: string }> }
 ) {
     const { topic } = await params;
-    const data = await prisma.topic.findMany({
+    const data = await prisma.topic.findFirst({
         where: {
             slug: topic,
         },

@@ -14,7 +14,7 @@ model author {
   name                     String?  @db.VarChar(255)
   surname                  String?  @db.VarChar(255)
   slug                     String   @db.Text
-  img                      String?  @db.Text
+  img                      String?  @db.Text @default("author.png")
   active                   Boolean  @default(true)
   createdAt                DateTime @default(now()) @db.DateTime(0)
 
@@ -23,15 +23,18 @@ model author {
 
 model news {
   id                       Int       @id @default(autoincrement())
-  title                    String    @db.Text
+  title                    String    @db.VarChar(255)
+  description              String?   @db.VarChar(500)
   content                  String?   @db.Text
   slug                     String    @db.Text
+  seo_title                String?    @db.VarChar(255)
+  seo_description          String?   @db.VarChar(500)
   img                      String?   @db.Text
   author                   Int
   topic                    Int
   active                   Boolean   @default(true)
   createdAt                DateTime  @default(now()) @db.DateTime(0)
-  updatedAt                DateTime  @updatedAt @db.DateTime(0)
+  updatedAt                DateTime? @updatedAt @db.DateTime(0) 
 
   author_rs                author    @relation("author_news", fields: [author], references: [id], onDelete: Cascade)
   topic_rs                 topic     @relation("topic_news", fields: [topic], references: [id], onDelete: Cascade)

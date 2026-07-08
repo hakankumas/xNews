@@ -1,4 +1,4 @@
-import ClientTopic from "./ClientTopic";
+import TopicList from "./TopicList";
 
 interface Props {
     params: Promise<{ topic: string }>;
@@ -7,5 +7,5 @@ interface Props {
 export default async function Topic({ params }: Props) {
     const { topic } = await params;
 
-    return <ClientTopic topic={topic} />;
+    return <TopicList topic={topic} />;
 }

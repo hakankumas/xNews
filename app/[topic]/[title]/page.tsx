@@ -1,4 +1,4 @@
-import ClientTitle from "./ClientTitle";
+import NewDetails from "./NewDetails";
 
 interface Props {
     params: Promise<{ title: string }>;
@@ -7,5 +7,5 @@ interface Props {
 export default async function Title({ params }: Props) {
     const { title } = await params;
 
-    return <ClientTitle title={title} />;
+    return <NewDetails title={title} />;
 }
