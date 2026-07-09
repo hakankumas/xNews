@@ -9,7 +9,7 @@ import New8 from "@/components/New8";
 
 export default function App() {
     return (
-        <div className="container mx-auto">
+        <div className="max-w-5xl mx-auto">
             <New1 />
             <New2 />
             <New3 />

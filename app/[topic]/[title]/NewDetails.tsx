@@ -36,13 +36,14 @@ export default function NewDetails({ title }: Props) {
     if (!data) return null;
 
     return (
-        <div className="container mx-auto flex flex-col gap-4">
+        <div className="max-w-5xl mx-auto flex flex-col gap-5 p-3 lg:p-0">
             {/* Topic and Author  */}
-            <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row justify-between items-center lg:pt-3">
                 <div className="flex flex-col gap-2">
                     <Link
                         href={`/${data.topic_rs.slug}`}
                         className="cursor-pointer"
+                        title={`${data.topic_rs.name} Haberleri`}
                     >
                         {data.topic_rs.img && (
                             <img
@@ -58,7 +59,7 @@ export default function NewDetails({ title }: Props) {
                             </span>
                         </div>
                     </Link>
-                    <div className="flex flex-row gap-2 text-sm">
+                    <div className="flex flex-col lg:flex-row gap-2 text-sm">
                         <div>{formatDate(data.createdAt)}</div>
                         {data.updatedAt && (
                             <div>{` | Güncelleme: ${formatDate(
@@ -83,26 +84,30 @@ export default function NewDetails({ title }: Props) {
                 </Link>
             </div>
 
-            {/* New Details */}
+            {/* New Details - Title and Description */}
             <div className="flex flex-col gap-3">
-                <div className="font-bold text-4xl">{data.title}</div>
-                <div className="text-xl">{data.description}</div>
-                <div className="flex flex-row justify-between gap-10">
-                    <div className="w-3/4">
-                        <img
-                            src={`/${data.img}`}
-                            alt={data.title}
-                            className="object-cover w-full max-h-125"
-                        />
-                        <div>{data.content}</div>
-                    </div>
-                    {/* Topic Menu */}
-                    <div className="w-1/4">
-                        <Link
-                            href={`/${data.topic_rs.slug}`}
-                            className="text-2xl font-bold cursor-pointer"
-                        >{`${data.topic_rs.name} Haberleri`}</Link>
-                    </div>
+                <div className="font-bold text-3xl lg:text-4xl">
+                    {data.title}
+                </div>
+                <div className="text-2xl">{data.description}</div>
+            </div>
+
+            <div className="flex flex-col lg:flex-row lg:justify-between gap-3 lg:gap-10">
+                {/* New Details - IMG and Content */}
+                <div className="flex flex-col gap-3 lg:w-3/4">
+                    <img
+                        src={`/${data.img}`}
+                        alt={data.title}
+                        className="object-cover w-full max-h-125 border"
+                    />
+                    <div className="text-lg">{data.content}</div>
+                </div>
+                {/* Topic Menu */}
+                <div className="lg:w-1/4">
+                    <Link
+                        href={`/${data.topic_rs.slug}`}
+                        className="text-2xl font-bold cursor-pointer"
+                    >{`${data.topic_rs.name} Haberleri`}</Link>
                 </div>
             </div>
         </div>

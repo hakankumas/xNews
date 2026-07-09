@@ -32,25 +32,28 @@ export default function TopicList({ topic }: Props) {
     if (!data) return null;
 
     return (
-        <>
-            <div className="container mx-auto grid grid-cols-4 gap-5">
+        <div className="max-w-5xl mx-auto flex flex-col">
+            <div className="text-2xl font-bold text-red-600 p-3 lg:px-0">{`${data.name} Haberleri`}</div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 px-3 lg:px-0">
                 {data.news.map((item) => (
                     <Link
                         key={item.id}
-                        className="flex flex-col cursor-pointer"
                         href={`/${data.slug}/${item.slug}`}
+                        className="flex flex-col gap-2 cursor-pointer"
                     >
                         <img
                             src={item.img ?? ""}
                             alt={item.title ?? ""}
                             title={item.title ?? ""}
-                            className="object-cover w-full h-50"
+                            className="object-cover w-full h-50 border"
                         />
-                        <div>{item.title}</div>
+                        <div className="font-bold text-xl lg:text-lg line-clamp-3">
+                            {item.title}
+                        </div>
                     </Link>
                 ))}
             </div>
             {/* <pre>{JSON.stringify(data, null, 2)}</pre>; */}
-        </>
+        </div>
     );
 }

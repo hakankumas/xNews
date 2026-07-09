@@ -27,15 +27,22 @@ export default function New1() {
     if (!data) return null;
 
     return (
-        <div className="grid grid-cols-5 gap-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 px-3 lg:px-0">
             {data.map((item) => (
                 <Link
-                    href={`/${item.topic_rs.slug}/${item.slug}`}
                     key={item.id}
-                    className="border p-3"
+                    href={`/${item.topic_rs.slug}/${item.slug}`}
+                    className="flex flex-col gap-2 cursor-pointer"
                 >
-                    <div>{item.title}</div>
-                    <div>{item.content}</div>
+                    <img
+                        src={item.img ?? ""}
+                        alt={item.title ?? ""}
+                        title={item.title ?? ""}
+                        className="object-cover w-full h-50 border"
+                    />
+                    <div className="font-bold text-xl lg:text-lg line-clamp-3">
+                        {item.title}
+                    </div>
                 </Link>
             ))}
         </div>

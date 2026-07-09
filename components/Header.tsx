@@ -21,19 +21,26 @@ export default function Header() {
 
     return (
         <div>
-            <div className="w-full bg-red-600 h-15 flex items-center ps-5">
-                <Link href={"/"}>sondakikaaciklama.com</Link>
-            </div>
-            <div className="container mx-auto flex flex-row gap-5 justify-center">
-                {data.map((item) => (
-                    <Link
-                        key={item.id}
-                        href={`/${item.slug}`}
-                        className="font-bold p-3 cursor-pointer hover:text-gray-500"
-                    >
-                        <div>{item.name.toLocaleUpperCase("tr")}</div>
+            <div className="w-full bg-red-600">
+                <div className="max-w-5xl mx-auto flex flex-row h-15 justify-between items-center px-3 lg:px-0">
+                    <Link href={"/"} className="font-bold text-white text-xl">
+                        sondakikaaciklama.com
                     </Link>
-                ))}
+                    <div className="flex flex-row gap-3">socialmedia</div>
+                </div>
+            </div>
+            <div className="w-full bg-gray-100">
+                <div className="max-w-5xl mx-auto flex flex-row h-15 gap-5 items-center px-3 lg:px-0">
+                    {data.map((item) => (
+                        <Link
+                            key={item.id}
+                            href={`/${item.slug}`}
+                            className="font-bold cursor-pointer hover:text-gray-700"
+                        >
+                            <div>{item.name.toLocaleUpperCase("tr")}</div>
+                        </Link>
+                    ))}
+                </div>
             </div>
         </div>
     );
