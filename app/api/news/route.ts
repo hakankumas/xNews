@@ -7,6 +7,9 @@ export async function GET() {
             author_rs: true,
             topic_rs: true,
         },
+        orderBy: {
+            createdAt: "desc",
+        },
     });
 
     return NextResponse.json(data);

@@ -7,7 +7,7 @@ datasource db {
   provider = "mysql"
 }
 
-model author {
+model Author {
   id                       Int      @id @default(autoincrement())
   username                 String   @db.VarChar(255)
   password                 String   @db.VarChar(255)
@@ -18,10 +18,10 @@ model author {
   active                   Boolean  @default(true)
   createdAt                DateTime @default(now()) @db.DateTime(0)
 
-  news                     news[]   @relation("author_news")
+  news                     News[]   @relation("author_news")
 }
 
-model news {
+model News {
   id                       Int       @id @default(autoincrement())
   title                    String    @db.VarChar(255)
   description              String?   @db.VarChar(500)
@@ -36,18 +36,18 @@ model news {
   createdAt                DateTime  @default(now()) @db.DateTime(0)
   updatedAt                DateTime? @updatedAt @db.DateTime(0) 
 
-  author_rs                author    @relation("author_news", fields: [author], references: [id], onDelete: Cascade)
-  topic_rs                 topic     @relation("topic_news", fields: [topic], references: [id], onDelete: Cascade)
+  author_rs                Author    @relation("author_news", fields: [author], references: [id], onDelete: Cascade)
+  topic_rs                 Topic     @relation("topic_news", fields: [topic], references: [id], onDelete: Cascade)
 
   @@index([author], map: "author")
   @@index([topic], map: "topic")
 }
 
-model topic {
+model Topic {
   id                       Int      @id @default(autoincrement())
   name                     String   @db.VarChar(255)
   slug                     String   @db.Text
   img                      String?  @db.Text
 
-  news                     news[]   @relation("topic_news")
+  news                     News[]   @relation("topic_news")
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { topic } from "@/generated/prisma/client";
+import { Topic } from "@/generated/prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Link from "next/link";
@@ -9,7 +9,7 @@ export default function Header() {
     const { data, isLoading, error } = useQuery({
         queryKey: ["header"],
         queryFn: async () => {
-            const res = await axios.get<topic[]>("/api/topic");
+            const res = await axios.get<Topic[]>("/api/T");
             return res.data;
         },
         staleTime: Infinity,
@@ -40,6 +40,12 @@ export default function Header() {
                             <div>{item.name.toLocaleUpperCase("tr")}</div>
                         </Link>
                     ))}
+                    <Link
+                        href={`/yazarlar`}
+                        className="font-bold cursor-pointer hover:text-gray-700"
+                    >
+                        <div>YAZARLAR</div>
+                    </Link>
                 </div>
             </div>
         </div>

@@ -11,7 +11,12 @@ export async function GET(
             slug: topic,
         },
         include: {
-            news: true,
+            news: {
+                orderBy: {
+                    createdAt: "desc",
+                },
+                take: 10,
+            },
         },
     });
 

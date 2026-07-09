@@ -5,7 +5,7 @@ import { Prisma } from "@/generated/prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-type NewsWithRelations = Prisma.newsGetPayload<{
+type NewsWithRelations = Prisma.NewsGetPayload<{
     include: {
         topic_rs: true;
         author_rs: true;
