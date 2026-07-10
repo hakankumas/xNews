@@ -80,12 +80,12 @@ export default function Header() {
                             <div>{item.name.toLocaleUpperCase("tr")}</div>
                         </Link>
                     ))}
-                    <Link
+                    {/* <Link
                         href={`/yazarlar`}
                         className="font-bold cursor-pointer hover:text-gray-700"
                     >
                         <div>YAZARLAR</div>
-                    </Link>
+                    </Link> */}
                     <Link
                         href={`/kose-yazilari`}
                         className="font-bold cursor-pointer hover:text-gray-700"
