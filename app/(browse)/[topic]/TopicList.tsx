@@ -34,7 +34,7 @@ export default function TopicList({ topic }: Props) {
     return (
         <div className="max-w-5xl mx-auto flex flex-col">
             <div className="text-2xl font-bold text-red-600 p-3 lg:px-0">{`${data.name} Haberleri`}</div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 px-3 lg:px-0">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-7 px-3 lg:px-0">
                 {data.news.map((item) => (
                     <Link
                         key={item.id}
@@ -45,7 +45,7 @@ export default function TopicList({ topic }: Props) {
                             src={item.img ?? ""}
                             alt={item.title ?? ""}
                             title={item.title ?? ""}
-                            className="object-cover w-full h-50 border"
+                            className="object-cover w-full h-50 shadow-lg"
                         />
                         <div className="font-bold text-xl lg:text-lg line-clamp-3">
                             {item.title}

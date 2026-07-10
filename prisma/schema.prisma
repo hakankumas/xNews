@@ -8,17 +8,18 @@ datasource db {
 }
 
 model Author {
-  id                       Int      @id @default(autoincrement())
-  username                 String   @db.VarChar(255)
-  password                 String   @db.VarChar(255)
-  name                     String?  @db.VarChar(255)
-  surname                  String?  @db.VarChar(255)
-  slug                     String   @db.Text
-  img                      String?  @db.Text @default("author.png")
-  active                   Boolean  @default(true)
-  createdAt                DateTime @default(now()) @db.DateTime(0)
+  id                       Int         @id @default(autoincrement())
+  username                 String      @db.VarChar(255)
+  password                 String      @db.VarChar(255)
+  name                     String?     @db.VarChar(255)
+  surname                  String?     @db.VarChar(255)
+  slug                     String      @db.Text
+  img                      String?     @db.Text @default("author.png")
+  active                   Boolean     @default(true)
+  createdAt                DateTime    @default(now()) @db.DateTime(0)
 
-  news                     News[]   @relation("author_news")
+  news                     News[]      @relation("author_news")
+  opinion                  Opinion[]   @relation("author_opinion")
 }
 
 model News {
@@ -27,10 +28,10 @@ model News {
   description              String?   @db.VarChar(500)
   content                  String?   @db.Text
   slug                     String    @db.Text
-  seo_title                String?    @db.VarChar(255)
+  seo_title                String?   @db.VarChar(255)
   seo_description          String?   @db.VarChar(500)
   img                      String?   @db.Text
-  author                   Int
+  author                   Int       @default(1)
   topic                    Int
   active                   Boolean   @default(true)
   createdAt                DateTime  @default(now()) @db.DateTime(0)
@@ -44,10 +45,33 @@ model News {
 }
 
 model Topic {
-  id                       Int      @id @default(autoincrement())
-  name                     String   @db.VarChar(255)
-  slug                     String   @db.Text
-  img                      String?  @db.Text
+  id                       Int         @id @default(autoincrement())
+  name                     String      @db.VarChar(255)
+  slug                     String      @db.Text
+  img                      String?     @db.Text
 
-  news                     News[]   @relation("topic_news")
+  news                     News[]      @relation("topic_news")
+  opinion                  Opinion[]   @relation("topic_opinion")
+}
+
+model Opinion {
+  id                       Int       @id @default(autoincrement())
+  title                    String    @db.VarChar(255)
+  description              String?   @db.VarChar(500)
+  content                  String?   @db.Text
+  slug                     String    @db.Text
+  seo_title                String?   @db.VarChar(255)
+  seo_description          String?   @db.VarChar(500)
+  img                      String?   @db.Text
+  author                   Int
+  topic                    Int
+  active                   Boolean   @default(true)
+  createdAt                DateTime  @default(now()) @db.DateTime(0)
+  updatedAt                DateTime? @updatedAt @db.DateTime(0) 
+
+  author_rs                Author    @relation("author_opinion", fields: [author], references: [id], onDelete: Cascade)
+  topic_rs                 Topic     @relation("topic_opinion", fields: [topic], references: [id], onDelete: Cascade)
+
+  @@index([author], map: "author")
+  @@index([topic], map: "topic")
 }

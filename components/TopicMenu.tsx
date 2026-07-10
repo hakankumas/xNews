@@ -13,10 +13,10 @@ type TopicWithRelations = Prisma.TopicGetPayload<{
 
 type Props = {
     topic: string;
-    new_id: number;
+    item_id: number;
 };
 
-export default function TopicMenu({ topic, new_id }: Props) {
+export default function TopicMenu({ topic, item_id }: Props) {
     const { data, isLoading, error } = useQuery({
         queryKey: [topic],
         queryFn: async () => {
@@ -35,19 +35,19 @@ export default function TopicMenu({ topic, new_id }: Props) {
     return (
         <>
             {data.news
-                .filter((item) => item.id !== new_id)
+                .filter((item) => item.id !== item_id)
                 .map((item) => (
                     <Link
                         key={item.id}
                         href={`/${item.slug}/${item.slug}`}
-                        className="text-lg flex flex-col gap-2 cursor-pointer"
+                        className="text-lg flex flex-col cursor-pointer"
                     >
                         <img
                             src={`/${item.img}`}
                             alt={item.title ?? ""}
-                            className="border w-full h-50 lg:h-35 object-cover"
+                            className="w-full h-50 lg:h-35 object-cover"
                         />
-                        <div className="font-bold line-clamp-3">
+                        <div className="font-bold line-clamp-3 shadow-lg p-2 rounded-b-md bg-black text-white">
                             {item.title}
                         </div>
                     </Link>

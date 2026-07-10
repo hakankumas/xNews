@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `news` MODIFY `author` INTEGER NOT NULL DEFAULT 1;

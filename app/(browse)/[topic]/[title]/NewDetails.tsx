@@ -98,11 +98,13 @@ export default function NewDetails({ title }: Props) {
                 <div className="flex flex-col lg:flex-row lg:justify-between gap-3 lg:gap-10">
                     {/* New Details - IMG and Content */}
                     <div className="flex flex-col gap-3 lg:w-3/4">
-                        <img
-                            src={`/${data.img}`}
-                            alt={data.title}
-                            className="object-cover w-full max-h-125 border"
-                        />
+                        {data.img && (
+                            <img
+                                src={`/${data.img}`}
+                                alt={data.title}
+                                className="object-cover w-full max-h-125 shadow-lg"
+                            />
+                        )}
                         <div className="text-lg">{data.content}</div>
                     </div>
                     {/* Topic Menu */}
@@ -113,7 +115,7 @@ export default function NewDetails({ title }: Props) {
                         >{`${data.topic_rs.name} Haberleri`}</Link>
                         <TopicMenu
                             topic={data.topic_rs.slug}
-                            new_id={data.id}
+                            item_id={data.id}
                         />
                     </div>
                 </div>

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Prisma } from "@/generated/prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 type NewsWithRelations = Prisma.NewsGetPayload<{
     include: {
@@ -12,7 +14,7 @@ type NewsWithRelations = Prisma.NewsGetPayload<{
     };
 }>;
 
-export default function New1() {
+export default function Slider() {
     const { data, isLoading, error } = useQuery({
         queryKey: ["news"],
         queryFn: async () => {
@@ -27,24 +29,19 @@ export default function New1() {
     if (!data) return null;
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 px-3 lg:px-0">
+        <Swiper slidesPerView={1} className="shadow-lg">
             {data.map((item) => (
-                <Link
-                    key={item.id}
-                    href={`/${item.topic_rs.slug}/${item.slug}`}
-                    className="flex flex-col gap-2 cursor-pointer"
-                >
-                    <img
-                        src={item.img ?? ""}
-                        alt={item.title ?? ""}
-                        title={item.title ?? ""}
-                        className="object-cover w-full h-50 border"
-                    />
-                    <div className="font-bold text-xl lg:text-lg line-clamp-3">
-                        {item.title}
-                    </div>
-                </Link>
+                <SwiperSlide key={item.id}>
+                    <Link href={`/${item.topic_rs.slug}/${item.slug}`}>
+                        <img
+                            src={item.img ?? ""}
+                            alt={item.title ?? ""}
+                            title={item.title ?? ""}
+                            className="w-full h-[450px] object-cover"
+                        />
+                    </Link>
+                </SwiperSlide>
             ))}
-        </div>
+        </Swiper>
     );
 }
