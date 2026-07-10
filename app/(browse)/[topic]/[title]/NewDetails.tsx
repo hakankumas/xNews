@@ -38,7 +38,7 @@ export default function NewDetails({ title }: Props) {
 
     return (
         <>
-            <div className="max-w-5xl mx-auto flex flex-col gap-5 p-3 lg:p-0">
+            <div className="flex flex-col gap-5 p-3 lg:p-0">
                 {/* Topic and Author  */}
                 <div className="flex flex-row justify-between items-center lg:pt-3">
                     <div className="flex flex-col gap-2">

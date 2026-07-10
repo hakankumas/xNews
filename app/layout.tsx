@@ -32,7 +32,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <body className="flex flex-col">
                 <Provider>
                     <Header />
-                    <div className="h-full min-h-screen">{children}</div>
+                    <div className="flex justify-center h-full min-h-screen">
+                        <div className="w-full lg:w-5xl">{children}</div>
+                    </div>
                     <Footer />
                 </Provider>
             </body>

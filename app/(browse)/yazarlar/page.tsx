@@ -19,27 +19,27 @@ export default function Yazarlar() {
     if (!data) return null;
 
     return (
-        <div className="max-w-5xl mx-auto p-3 lg:px-0">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-                {data
-                    .filter((item) => item.id !== 1)
-                    .map((item) => (
-                        <Link
-                            key={item.id}
-                            href={`/yazarlar/${item.slug}`}
-                            className="flex flex-col gap-2 cursor-pointer"
-                        >
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-7 p-3 lg:px-0">
+            {data
+                .filter((item) => item.id !== 1)
+                .map((item) => (
+                    <Link
+                        key={item.id}
+                        href={`/yazarlar/${item.slug}`}
+                        className="flex flex-row lg:flex-col gap-5 lg:gap-3 items-center cursor-pointer shadow-lg p-3"
+                    >
+                        {item.img && (
                             <img
                                 src={`/yazarlar/${item.img}`}
                                 alt={`${item.name} ${item.surname}`}
-                                className="object-cover w-50 h-50 flex mx-auto"
+                                className="object-cover w-20 h-20 lg:w-40 lg:h-40"
                             />
-                            <div className="font-bold text-xl lg:text-lg line-clamp-3 text-center">
-                                {`${item.name} ${item.surname}`}
-                            </div>
-                        </Link>
-                    ))}
-            </div>
+                        )}
+                        <div className="font-bold text-2xl lg:text-lg line-clamp-3 text-center">
+                            {`${item.name} ${item.surname}`}
+                        </div>
+                    </Link>
+                ))}
         </div>
     );
 }

@@ -38,7 +38,7 @@ export default function OpinionColumn() {
                 href="/kose-yazilari"
                 className="font-bold text-2xl pt-1 text-center"
             >
-                Köşe Yazıları
+                KÖŞE YAZILARI
             </Link>
             {data.map((item) => (
                 <Link
