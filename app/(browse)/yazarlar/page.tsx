@@ -8,7 +8,7 @@ export default function Yazarlar() {
     const { data, isLoading, error } = useQuery({
         queryKey: ["yazarlar"],
         queryFn: async () => {
-            const res = await axios.get<Author[]>("/api/author/info");
+            const res = await axios.get<Author[]>("/api/author");
             return res.data;
         },
         staleTime: Infinity,
