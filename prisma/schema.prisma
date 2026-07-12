@@ -13,7 +13,7 @@ model Author {
   password                 String      @db.VarChar(255)
   name                     String?     @db.VarChar(255)
   surname                  String?     @db.VarChar(255)
-  slug                     String      @db.Text
+  slug                     String      @unique
   img                      String?     @db.Text @default("author.png")
   active                   Boolean     @default(true)
   createdAt                DateTime    @default(now()) @db.DateTime(0)
@@ -27,7 +27,7 @@ model News {
   title                    String    @db.VarChar(255)
   description              String?   @db.VarChar(500)
   content                  String?   @db.Text
-  slug                     String    @db.Text
+  slug                     String    @unique
   seo_title                String?   @db.VarChar(255)
   seo_description          String?   @db.VarChar(500)
   img                      String?   @db.Text
@@ -47,7 +47,7 @@ model News {
 model Topic {
   id                       Int         @id @default(autoincrement())
   name                     String      @db.VarChar(255)
-  slug                     String      @db.Text
+  slug                     String      @unique
   img                      String?     @db.Text
 
   news                     News[]      @relation("topic_news")
@@ -59,7 +59,7 @@ model Opinion {
   title                    String    @db.VarChar(255)
   description              String?   @db.VarChar(500)
   content                  String?   @db.Text
-  slug                     String    @db.Text
+  slug                     String    @unique
   seo_title                String?   @db.VarChar(255)
   seo_description          String?   @db.VarChar(500)
   img                      String?   @db.Text

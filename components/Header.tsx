@@ -17,7 +17,7 @@ export default function Header() {
     const { data, isLoading, error } = useQuery({
         queryKey: ["header"],
         queryFn: async () => {
-            const res = await axios.get<Topic[]>("/api/topic");
+            const res = await axios.get<Topic[]>("/api/topic/some");
             return res.data;
         },
         staleTime: Infinity,
